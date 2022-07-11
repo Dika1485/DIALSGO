@@ -9,7 +9,7 @@ int main() {
     short N;
     int X, jarak_terdekat = 99999;
     cin >> N >> X;
-    int * kupon_terdekat;
+    int * kupon_terdekat = NULL;
     short data_count = 0;
     for (short i = 0; i < N; i++) {
         int kupon_tmp;
@@ -18,10 +18,8 @@ int main() {
         if (jarak_tmp < jarak_terdekat) {
             jarak_terdekat = jarak_tmp;
             data_count = 1;
-            int * tmp = kupon_terdekat;
-            kupon_terdekat = (int*)malloc(sizeof(int) * data_count);
+            kupon_terdekat = (int*)realloc(kupon_terdekat, sizeof(int) * data_count);
             kupon_terdekat[0] = kupon_tmp;
-            free(tmp);
             continue;
         }
         if (jarak_tmp == jarak_terdekat) {
