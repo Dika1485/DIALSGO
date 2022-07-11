@@ -18,8 +18,10 @@ int main() {
         if (jarak_tmp < jarak_terdekat) {
             jarak_terdekat = jarak_tmp;
             data_count = 1;
-            kupon_terdekat = (int*)realloc(kupon_terdekat, sizeof(int) * data_count);
+            int * tmp = kupon_terdekat;
+            kupon_terdekat = (int*)malloc(sizeof(int) * data_count);
             kupon_terdekat[0] = kupon_tmp;
+            free(tmp);
             continue;
         }
         if (jarak_tmp == jarak_terdekat) {
