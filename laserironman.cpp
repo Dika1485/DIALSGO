@@ -31,6 +31,10 @@ int main() {
 	memset(tembak,1,sizeof tembak);
 	for (int i = 0; i < l; i++){
 		cin>>a>>b>>c>>d;
+		a+=5000;
+		b+=5000;
+		c+=5000;
+		d+=5000;
 		for(int j=0;j<n;j++){
 			if(tembak[j]){
 				for(int k=x;k!=ultron[j][0];x<ultron[j][0]?k++:k--){
