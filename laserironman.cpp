@@ -1,8 +1,13 @@
 // m = (y2-y1) / (x2-x1)
+// c = y1 - (m * x1)
 // y = mx + c
 //   = mx + y1 - mx1
+//   = m(x-x1) + y1
 //   = (y2-y1) / (x2-x1) * (x-x1) + y1
-// c = y1 - (m * x1)
+// y = y
+// (d-b) / (c-a) * (x-a) + b = (y2-y1) / (x2-x1) * (x-x1) + y1
+// (d-b) * (x-a) + b * (c-a) = (y2-y1) / (x2-x1) * (x-x1) * (c-a) + y1 * (c-a)
+// ((d-b) * (x-a) + b * (c-a)) * (x2-x1) = ((y2-y1) * (x-x1) + y1 * (x2-x1)) * (c-a)
 
 #include <iostream>
 #include <cstring>
@@ -22,35 +27,23 @@ int main() {
 	}
 	int l,a,b,c,d; // jml sisi bangunan
 	cin>>l;
-	int sisi[1001][1001];
-	memset(sisi,0,sizeof sisi);
+	bool tembak[n];
+	memset(tembak,1,sizeof tembak);
 	for (int i = 0; i < l; i++){
-		cin>>a>>b>>c>>d;//3 5 3 3
-		sisi[c][d]=1;
-		for(int j=a;j!=c;a<c?j++:j--){
-			if(c==a){
-				for(int k=b;k!=d;b<d?k++:k--){
-					sisi[j][k]=1;
-				}
-			}
-			else sisi[j][(d-b) / (c-a) * (j-a) + b]=1;
-		}
-	}
-	for(int i=0;i<n;i++){
-		bool termasuk=1;
-		for(int j=x;j!=ultron[i][0];x<ultron[i][0]?j++:j--){
-			if(ultron[i][0]==x){
-				for(int k=y;k!=ultron[i][1];y<ultron[i][1]?k++:k--){
-					if(sisi[j][k]){
-						termasuk=0;
+		cin>>a>>b>>c>>d;
+		for(int j=0;j<n;j++){
+			if(tembak[j]){
+				for(int k=x;k!=ultron[j][0];x<ultron[j][0]?k++:k--){
+					if(((d-b) * (k-a) + b * (c-a)) * (ultron[j][0]-x) == ((ultron[j][1]-y) * (k-x) + y * (ultron[j][0]-x)) * (c-a)){
+						tembak[j]=0;
 						break;
 					}
 				}
 			}
-			else if(sisi[j][(ultron[i][1]-y) / (ultron[i][0]-x) * (j-x) + y]) termasuk=0;
-			if(!termasuk) break;
 		}
-		if(termasuk) hasil++;
+	}
+	for(int i=0;i<n;i++){
+		if(tembak[i]) hasil++;
 	}
 	cout<<hasil<<endl;
 	return 0;
