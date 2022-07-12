@@ -77,7 +77,7 @@ int main() {
                         break;
                     }
                 } else {
-                    long double m_sisi = (d-b) / (c-a);
+                    double m_sisi = (d-b) / (c-a);
                     double c_sisi = b - (m_sisi * a);
                     double y_sisi = q;
                     double x_sisi = (y_sisi - c_sisi) / m_sisi;
