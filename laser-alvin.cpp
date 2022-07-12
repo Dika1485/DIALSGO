@@ -49,10 +49,10 @@ int main() {
                         break;
                     }
                 } else {
-                    long double m_sisi = (d-b) / (c-a);
-                    long double c_sisi = b - (m_sisi * a);
+                    double m_sisi = (d-b) / (c-a);
+                    double c_sisi = b - (m_sisi * a);
                     double x_sisi = p;
-                    long double y_sisi = (m_sisi * x_sisi) + c_sisi;
+                    double y_sisi = (m_sisi * x_sisi) + c_sisi;
                     if (y_sisi <= max(b,d) && y_sisi >= min(b,d) && y_sisi <= max(y,q) && y_sisi >= min(y,q)) {
                         flag = 0;
                         break;
@@ -78,9 +78,9 @@ int main() {
                     }
                 } else {
                     long double m_sisi = (d-b) / (c-a);
-                    long double c_sisi = b - (m_sisi * a);
+                    double c_sisi = b - (m_sisi * a);
                     double y_sisi = q;
-                    long double x_sisi = (y_sisi - c_sisi) / m_sisi;
+                    double x_sisi = (y_sisi - c_sisi) / m_sisi;
                     if (x_sisi <= max(a,c) && x_sisi >= min(a,c) && x_sisi <= max(x,p) && x_sisi >= min(x,p)) {
                         flag = 0;
                         break;
@@ -99,26 +99,26 @@ int main() {
 
                 if (a == c) { // apabila sisi vertikal
                     double x_ult = a;
-                    long double y_ult = (m_ult * a) + c_ult;
+                    double y_ult = (m_ult * a) + c_ult;
                     if (y_ult <= max(b,d) && y_ult >= min(b,d)) {
                         flag = 0;
                         break;
                     }
                 } else if (b == d) { // apabila sisi horizontal
                     double y_ult = b;
-                    long double x_ult = (y_ult - c_ult) / m_ult;
+                    double x_ult = (y_ult - c_ult) / m_ult;
                     if (x_ult <= max(a,c) && x_ult >= min(a,c)) {
                         flag = 0;
                         break;
                     }
                 } else {
-                    long double m_sisi = (d-b) / (c-a);
-                    long double c_sisi = b - (m_sisi * a);
+                    double m_sisi = (d-b) / (c-a);
+                    double c_sisi = b - (m_sisi * a);
 
-                    long double tmp1 = m_ult + (m_sisi * -1);
-                    long double tmp2 = c_sisi + (c_ult * -1);
-                    long double xp = tmp2 / tmp1;
-                    long double yp = (m_ult * xp) + c_ult;
+                    double tmp1 = m_ult + (m_sisi * -1);
+                    double tmp2 = c_sisi + (c_ult * -1);
+                    double xp = tmp2 / tmp1;
+                    double yp = (m_ult * xp) + c_ult;
                     if (xp <= max(a,c) && xp >= min(a,c) && yp <= max(b,d) && yp >= min(b,d)) {
                         flag = 0;
                         break;
