@@ -45,13 +45,13 @@ int main() {
 				}
 				else{
 					if(ultron[j][0]==x){
-						if(((a>=x)&&(c<=x))||(a<=x)&&(c>=x)){
+						if(((a>=x)&&(c<=x))||((a<=x)&&(c>=x))){
 							double y1=(d-b) / (c-a) * (x-a) + b;
 							if(((y1<=y)&&(y1>=ultron[j][1]))||((y1>=y)&&(y1<=ultron[j][1]))) tembak[j]=0;
 						}
 					}
 					else if(c==a){
-						if(((x>=a)&&(ultron[j][0]<=a))||(x<=a)&&(ultron[j][0]>=a)){
+						if(((x>=a)&&(ultron[j][0]<=a))||((x<=a)&&(ultron[j][0]>=a))){
 							double y1=(ultron[j][1]-y) / (ultron[j][0]-x) * (a-x) + y;
 							if(((y1<=b)&&(y1>=d))||((y1>=b)&&(y1<=d))) tembak[j]=0;
 						}
@@ -61,7 +61,7 @@ int main() {
 						for(int k=x;k!=ultron[j][0];x<ultron[j][0]?k++:k--){
 							double y1=(ultron[j][1]-y) / (ultron[j][0]-x) * (k-x) + y;
 							double y2=(d-b) / (c-a) * (k-a) + b;
-							if(((a>=k)&&(c<=k))||(a<=k)&&(c>=k)){
+							if(((a>=k)&&(c<=k))||((a<=k)&&(c>=k))){
 								if(y1==y2){
 									tembak[j]=0;
 									break;
