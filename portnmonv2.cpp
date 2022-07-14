@@ -3,9 +3,9 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-vector<int> tero[1000];
-int sar[1000],hasil[1000];
-bool jelajah[1000];
+vector<int> tero[100000];
+int sar[100000],hasil[100000];
+bool jelajah[100000];
 void teleport(int node,int link){
 	for(int i=0;i<tero[node].size();i++){
 		if(!jelajah[tero[node][i]]){

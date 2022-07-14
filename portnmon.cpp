@@ -3,9 +3,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-bool jelajah[1000];
-int sar[1000],n,k;
-vector<int> tero[1000];
+bool jelajah[100000];
+int sar[100000],n,k;
+vector<int> tero[100000];
 
 int teleport(int node,int tenaga,int hasil){
 	int temp=-1,ans=-1;
