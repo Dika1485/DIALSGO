@@ -1,42 +1,39 @@
 #include <cstring>
-#include <math.h>
 #include <iostream>
 #include <algorithm>
-#include <utility>
 #include <vector>
 using namespace std;
-
+vector<int> tero[20];
+int sar[20],hasil[20];
+bool jelajah[20];
+void teleport(int node,int link){
+	for(int i=0;i<tero[node].size();i++){
+		if(!jelajah[tero[node][i]]){
+			jelajah[tero[node][i]]=1;
+			hasil[link]+=sar[tero[node][i]];
+			teleport(tero[node][i],link);
+		}
+	}
+}
 int main(){
 	int a,b,ans=0,n,k,link=0;
-	vector<pair<int,int> >tero;
 	cin>>n>>k;
-	int sar[n],hasil[n],lis[20];
 	memset(hasil,0,sizeof hasil);
-	memset(lis,-1,sizeof lis);
+	memset(jelajah,0,sizeof jelajah);
 	for(int i=0;i<n;i++){
 		cin>>sar[i];
 	}
 	for(int i=0;i<k;i++){
 		cin>>a>>b;
-		if(a<b) tero.push_back(make_pair(a-1,b-1));
-		else tero.push_back(make_pair(b-1,a-1));
+		tero[a-1].push_back(b-1);
+		tero[b-1].push_back(a-1);
 	}
-	sort(tero.begin(),tero.end());
-	for(int i=0;i<k;i++){
-		a=tero[i].first;
-		b=tero[i].second;
-		if(lis[a]==-1){
-			if(lis[b]==-1){
-				lis[b]=link;
-				hasil[link]+=sar[b];
-				link++;
-			}
-			lis[a]=lis[b];
-			hasil[lis[a]]+=sar[a];
-		}
-		else if(lis[b]==-1){
-			lis[b]=lis[a];
-			hasil[lis[b]]+=sar[b];
+	for(int i=0;i<n;i++){
+		if(!jelajah[i]){
+			jelajah[i]=1;
+			hasil[link]+=sar[i];
+			teleport(i,link);
+			link++;
 		}
 	}
 	sort(hasil,hasil+link);
