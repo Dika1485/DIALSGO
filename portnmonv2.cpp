@@ -3,9 +3,9 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-vector<int> tero[20];
-int sar[20],hasil[20];
-bool jelajah[20];
+vector<int> tero[1000];
+int sar[1000],hasil[1000];
+bool jelajah[1000];
 void teleport(int node,int link){
 	for(int i=0;i<tero[node].size();i++){
 		if(!jelajah[tero[node][i]]){
@@ -44,4 +44,3 @@ int main(){
 	cout<<ans<<endl;
 	return 0;
 }
-
