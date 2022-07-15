@@ -2,18 +2,15 @@
 // m = m
 // (d-b) / (c-a) = (y2-y1) / (x2-x1)
 // (d-b) * (x2-x1) = (y2-y1) * (c-a)
-// m1 * m2 = -1
-// (d-b) / (c-a) * (y2-y1) / (x2-x1) = -1
-// (d-b) * (y2-y1) = - ((c-a)*(x2-x1))
-// c = y1 - (m * x1)
 // y = mx + c
 //   = mx + y1 - mx1
 //   = m(x-x1) + y1
 //   = (y2-y1) / (x2-x1) * (x-x1) + y1
 // y = y
-// (d-b) / (c-a) * (x-a) + b = (y2-y1) / (x2-x1) * (x-x1) + y1
-// (d-b) * (x-a) + b * (c-a) = (y2-y1) / (x2-x1) * (x-x1) * (c-a) + y1 * (c-a)
-// ((d-b) * (x-a) + b * (c-a)) * (x2-x1) = ((y2-y1) * (x-x1) + y1 * (x2-x1)) * (c-a)
+// m1x + c1 = m2x + c2
+// (m1 - m2)x = c2 - c1
+// x = (c2 - c1) / (m1 - m2)
+// c = y1 - (m * x1)
 
 #include <iostream>
 #include <cstring>
@@ -46,35 +43,26 @@ int main() {
 				else{
 					if(ultron[j][0]==x){
 						if(((a>=x)&&(c<=x))||((a<=x)&&(c>=x))){
-							double y1=(d-b) / (c-a) * (x-a) + b;
+							double y1=1.00*(d-b) / (c-a) * (x-a) + b;
 							if(((y1<=y)&&(y1>=ultron[j][1]))||((y1>=y)&&(y1<=ultron[j][1]))) tembak[j]=0;
 						}
 					}
 					else if(c==a){
 						if(((x>=a)&&(ultron[j][0]<=a))||((x<=a)&&(ultron[j][0]>=a))){
-							double y1=(ultron[j][1]-y) / (ultron[j][0]-x) * (a-x) + y;
+							double y1=1.00*(ultron[j][1]-y) / (ultron[j][0]-x) * (a-x) + y;
 							if(((y1<=b)&&(y1>=d))||((y1>=b)&&(y1<=d))) tembak[j]=0;
 						}
 					}
 					else{
-						double temp1=0,temp2=0;
-						for(int k=x;k!=ultron[j][0];x<ultron[j][0]?k++:k--){
-							double y1=(ultron[j][1]-y) / (ultron[j][0]-x) * (k-x) + y;
-							double y2=(d-b) / (c-a) * (k-a) + b;
-							if(((a>=k)&&(c<=k))||((a<=k)&&(c>=k))){
-								if(y1==y2){
-									tembak[j]=0;
-									break;
-								}
-								else{
-									if(((temp1<temp2)&&(y1>y2))||((temp1>temp2)&&(y1<y2))){
-										tembak[j]=0;
-										break;
-									}
-								}
+						double m1=1.00*(d-b) / (c-a);
+						double m2=1.00*(ultron[j][1]-y) / (ultron[j][0]-x);
+						double c1=b - (m1 * a);
+						double c2=y - (m2 * x);
+						double x1=(c2-c1) / (m1-m2);
+						if(((x1>=x)&&(x1<=ultron[j][0]))||((x1<=x)&&(x1>=ultron[j][0]))){
+							if(((x1>=a)&&(x1<=c))||((x1<=a)&&(x1>=c))){
+								tembak[j]=0;
 							}
-							temp1=y1;
-							temp2=y2;
 						}
 					}
 				}
