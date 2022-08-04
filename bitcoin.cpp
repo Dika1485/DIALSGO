@@ -2,15 +2,34 @@
 #include <math.h>
 using namespace std;
 int main(){
-	long long h,n,untung=0,g=0;
-	cin>>n;
-	cin>>h;
-	g=h;
-	for(long long i=1;i<n;i++){
-		cin>>h;
-		untung=max(untung,h-g);
-		g=min(g,h);
-	}
-	cout<<untung<<endl;
-	return 0;
+    int untung=0,n;
+    bool mark=0;
+    cin>>n;
+    int h[n];
+    cin>>h[0];
+    for(int i=1;i<n;i++){
+        cin>>h[i];
+        if(mark){
+        	if(h[i]<h[i-1]){
+        		mark=!mark;
+        		untung+=h[i-1];
+        	}
+        	else if(i+1==n){
+        		mark=!mark;
+        		untung+=h[i];
+        	}
+        }
+        else{
+        	if(h[i]>h[i-1]){
+        		untung-=h[i-1];
+        		mark=!mark;
+        		if(i+1==n){
+        			mark=!mark;
+        			untung+=h[i];
+        		}
+        	}
+        }
+    }
+    cout<<untung<<endl;
+    return 0;
 }
