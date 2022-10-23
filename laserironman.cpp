@@ -1,30 +1,16 @@
-// m = (y2-y1) / (x2-x1)
-// m = m
-// (d-b) / (c-a) = (y2-y1) / (x2-x1)
-// (d-b) * (x2-x1) = (y2-y1) * (c-a)
-// y = mx + c
-//   = mx + y1 - mx1
-//   = m(x-x1) + y1
-//   = (y2-y1) / (x2-x1) * (x-x1) + y1
-// y = y
-// m1x + c1 = m2x + c2
-// (m1 - m2)x = c2 - c1
-// x = (c2 - c1) / (m1 - m2)
-// c = y1 - (m * x1)
-
 #include <iostream>
 #include <cstring>
 using namespace std;
 
 int main() {
-	int x,y,n,hasil=0;//posisi iron man
-	cin>>x>>y;//5 8
-	cin>>n;//jml ultron
+	int x,y,n,hasil=0;
+	cin>>x>>y;
+	cin>>n;
 	int ultron[n][2];
 	for(int i=0;i<n;i++){
 		cin>>ultron[i][0]>>ultron[i][1];
 	}
-	int l,a,b,c,d; // jml sisi bangunan
+	int l,a,b,c,d;
 	cin>>l;
 	bool tembak[n];
 	memset(tembak,1,sizeof tembak);
